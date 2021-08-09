@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>333</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="add-city">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.city }}<br>
+            {{ form.price }}<br>
+
+
+
+             <button class="btn btn-success" type="submit">Добавить</button>
+            <span>{{ error }}</span>
+
+        </form>
+    </div>
+
+
+
+    <style type="text/css">
+        input{
+            background-color: #d1d1d1;
+
+        }
+        .add-city {
+            width: 35%;
+        }
+        .form {
+            width: 45%;
+        }
+    </style>
+
+
+{% endblock content %}
