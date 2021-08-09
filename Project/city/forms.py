@@ -9,7 +9,7 @@ class CityListForm(ModelForm):
         widgets = {"city": TextInput(attrs=({
             'class': 'form-control',
             'placeholder': "Введите название города",
-
+            'pattern': "^[a-zA-Z]+$"
         })),
             "price": NumberInput(attrs=({
                 'class': 'form-control',

@@ -8,14 +8,22 @@
             {{ form.city }}<br>
             {{ form.price }}<br>
 
-
-
              <button class="btn btn-success" type="submit">Добавить</button>
             <span>{{ error }}</span>
-
         </form>
     </div>
-
+    <div class="show-city">
+        <p>CITY:</p>
+        <table>
+            <tbody>
+                {% for city in citys %}
+                    <tr>
+                        <td>{{ city.city }}: </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
     <style type="text/css">
@@ -25,6 +33,16 @@
         }
         .add-city {
             width: 35%;
+            float: left;
+
+        }
+        .show-city {
+            width: 35%;
+            background-color: blue;
+            float: right;
+
+
+
         }
         .form {
             width: 45%;
