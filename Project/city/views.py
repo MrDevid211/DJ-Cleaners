@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+
+def add_city(request):
+    return render(request, 'city/add_city.html')
+

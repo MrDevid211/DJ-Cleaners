@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'customers.apps.CustomersConfig',
     'cleaners.apps.CleanersConfig',
     'main.apps.MainConfig',
+    'city.apps.CityConfig'
 )
 
 MIDDLEWARE = (

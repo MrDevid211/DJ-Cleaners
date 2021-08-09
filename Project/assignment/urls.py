@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.urls import path
 from django.contrib import admin
 from main import views as main_views
 
@@ -10,5 +11,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls), # Убрал include для исправления ошибки
     url(r'^cleaners/', include(('cleaners.urls', 'cleaners'), namespace='cleaners')),
     url(r'^customers/', include(('customers.urls', 'customers') , namespace='customers')),
+    path('add_city', include('city.urls')),
     url(r'^$', main_views.home)
 ]
