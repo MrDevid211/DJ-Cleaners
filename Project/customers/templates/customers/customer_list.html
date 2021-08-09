@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Пользователи</h1>
+
+    <p>
+        <a href="{% url "customers:new" %}">Добавить пользователя</a>
+    </p>
+    <table class="table">
+        <thead>
+          <tr>
+                <th>Имя</th>
+                <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for customer in object_list %}
+                <tr>
+                    <td>{{ customer.first_name }}</td>
+                    <td>
+                        <a href="{% url "customers:detail" customer.id %}">Показать</a> |
+                        <a href="{% url "customers:edit" customer.id %}">Редактировать</a> |
+                        <a href="{% url "customers:delete" customer.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% load static %}{% spaceless %}
+<!doctype html>
+    <html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block title %}{% endblock %} :: MyProject</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="{{ STATIC_URL }}libs/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <a href="/cleaners">Клинеры</a> |
+        <a href="/customers">Пользователи</a> |
+        <a href="/ ">Заказать</a>
+        <hr>
+        {% block content %}{% endblock %}
+        <style type="text/css">
+            a {
+            text-decoration: none;
+            color: #0f7afc;
+            border-bottom: 1px solid;
+            border-bottom-color: rgba(15, 122, 252, 0.2);
+            }
+            a:hover {
+              text-decoration: none;
+              color: #cf0000;
+              border-bottom-color: rgba(208, 64, 0, 0.2);
+            }
+            body {
+                background-color: black;
+            }
+            h1,h2,th,p,td {
+                color: white;
+            }
+            input {
+                background-color: grey;
+            }
+
+        </style>
+    </body>
+</html>
+{% endspaceless %}

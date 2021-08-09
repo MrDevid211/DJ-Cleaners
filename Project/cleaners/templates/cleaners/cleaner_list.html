@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>Клинеры</h1>
+
+    <p>
+        <a href="{% url "cleaners:new" %}">Добавить Клинера</a>
+    </p>
+    <table class="table">
+        <thead>
+          <tr>
+                <th>Название</th>
+                <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for cleaner in object_list %}
+                <tr>
+                    <td>{{ cleaner.first_name }}</td>
+                    <td>
+                        <a href="{% url "cleaners:detail" cleaner.id %}">Показать</a> |
+                        <a href="{% url "cleaners:edit" cleaner.id %}">Редактировать</a> |
+                        <a href="{% url "cleaners:delete" cleaner.id %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

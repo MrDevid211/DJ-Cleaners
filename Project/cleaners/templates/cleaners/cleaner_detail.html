@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>{{ cleaner.first_name }}</h1>
+    <p>Счёт: <i>{{ cleaner.quality_score }}</i></p>
+    <p>
+        <a href="{% url "cleaners:list" %}">Назад</a>
+    </p>
+{% endblock content %}

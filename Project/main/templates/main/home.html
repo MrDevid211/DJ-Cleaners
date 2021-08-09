@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="bookings">
+        <h2>Заполните все поля для заказа клинера</h2><br>
+        <form method="post">
+            <input type="text" placeholder="Введите ваше имя" class="form-control inp"><br>
+            <input type="text" placeholder="Введите вашу фамилию" class="form-control inp"><br>
+            <p>Выберите город:</p>
+            <select class="city-select">
+                <option label="Киев" value="1" selected>Киев</option>
+                <option>Кременчуг</option>
+                <option>Ялта</option>
+                <option>Полтава</option>
+            </select>
+            <br><br>
+            <input type="text" placeholder="Введите свой номер телефона" class="form-control inp" pattern="2[0-9]{3}-[0-9]{3}"><br>
+            <input type="datetime-local" placeholder="Время" class="form-control inp"><br>
+
+
+            <button class="btn btn-success" type="submit">Заказать клинера</button>
+        </form>
+
+
+
+
+        <style type="text/css">
+            .inp, .city-select {
+                background-color: #d1d1d1;
+                width: 95%;
+            }
+            .bookings {
+                width: 35%;
+            }
+        </style>
+
+
+
+
+
+    </div>
+{% endblock content %}
