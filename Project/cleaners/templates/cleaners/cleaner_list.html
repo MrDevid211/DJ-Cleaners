@@ -17,7 +17,7 @@
         <tbody>
             {% for cleaner in object_list %}
                 <tr>
-                    <td>{{ cleaner.first_name }}</td>
+                    <td>{{ cleaner.first_name }} {{ cleaner.last_name }}:   <span class="quality"> <img src="https://image.flaticon.com/icons/png/512/3237/3237420.png"> {{ cleaner.quality_score }}</span></td>
                     <td>
                         <a href="{% url "cleaners:detail" cleaner.id %}">Показать</a> |
                         <a href="{% url "cleaners:edit" cleaner.id %}">Редактировать</a> |
@@ -27,4 +27,10 @@
             {% endfor %}
         </tbody>
     </table>
+    <style>
+        img {
+        height: 24px;
+        weight: 24px;
+        }
+    </style>
 {% endblock content %}

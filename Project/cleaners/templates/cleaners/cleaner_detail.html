@@ -2,8 +2,10 @@
 
 
 {% block content %}
-    <h1>{{ cleaner.first_name }}</h1>
+    <h1>{{ cleaner.first_name }} {{ cleaner.last_name }}</h1>
     <p>Счёт: <i>{{ cleaner.quality_score }}</i></p>
+    <p>Основной город: <i>{{ cleaner.city }}</i></p>
+    <p>Может выехать в: <i>{{ cleaner.other_city }}</i></p>
     <p>
         <a href="{% url "cleaners:list" %}">Назад</a>
     </p>

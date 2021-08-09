@@ -17,7 +17,7 @@
         <tbody>
             {% for customer in object_list %}
                 <tr>
-                    <td>{{ customer.first_name }}</td>
+                    <td>{{ customer.first_name }} {{ customer.last_name }}:   <span class="quality"> <img src="https://image.flaticon.com/icons/png/512/3237/3237420.png"> {{ customer.quality_score }}</span></td>
                     <td>
                         <a href="{% url "customers:detail" customer.id %}">Показать</a> |
                         <a href="{% url "customers:edit" customer.id %}">Редактировать</a> |
@@ -27,4 +27,10 @@
             {% endfor %}
         </tbody>
     </table>
+    <style>
+        img {
+        height: 24px;
+        weight: 24px;
+        }
+    </style>
 {% endblock content %}
