@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import path, reverse_lazy
 from django.forms import ModelForm, TextInput, Textarea
 from .forms import CleanerForm
+from city.forms import CityList
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -24,6 +25,7 @@ class CleanerDetail(DetailView):
 
 def CleanerCreation(request):
     print(333333333333333)
+    citys = CityList.objects.all()
     cleaner = Cleaner.objects.all() # Получаем байтики данны из таблички CityList
     error = '' # Шоб коду плохо не было создадим эту переменную заранее,а то ругается
     if request.method == "POST": # Проверяем что мы там вообще получаем и если это было кинуто нам через POST (не церковный) - продолжаем
@@ -39,6 +41,7 @@ def CleanerCreation(request):
         'form': form,
         'error': error,
         'cleaner': cleaner,
+        'citys': citys,
     }
 
     return render(request, 'cleaners/cleaner_form.html', context)

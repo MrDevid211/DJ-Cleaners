@@ -5,14 +5,22 @@ from django.forms import ModelForm, TextInput, Textarea
 class CleanerForm(ModelForm):
     class Meta:
         model = Cleaner
-        fields = [ "city","other_city"]
+        fields = ['first_name', 'last_name', 'quality_score', "duration", "city","other_city"]
         widgets = {
-            'city': TextInput(attrs={
+            'first_name': TextInput(attrs={
                 'class': "form-control",
-                'placeholder': 'Введите название',
+                'placeholder': 'Введите имя',
             }),
-            'other_city': Textarea(attrs={
+            'last_name': TextInput(attrs={
                 'class': "form-control",
-                'placeholder': 'Введите задачу'
+                'placeholder': 'Введите фамилию'
+            }),
+            'quality_score': TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Введите рейтинг клинера',
+            }),
+            'duration': TextInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Введите время клининга'
             }),
         }

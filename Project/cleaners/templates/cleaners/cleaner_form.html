@@ -11,14 +11,12 @@
 
 
             <fieldset>
-              <legend>Choose your interests</legend>
-              <div>
-                <input type="checkbox" id="coding" name="interest" value="coding">
-                <label for="coding">Coding</label>
-              </div>
-              <div>
-                <input type="checkbox" id="music" name="interest" value="music">
-                <label for="music">Music</label>
+              <legend>Выберите города, в которы может работать клинер</legend>
+              <div class="check-city">
+                {% for city in citys %}
+                <input type="checkbox" id={{ city.city }} name={{ city.city }} value={{ city.city }}>
+                <label>{{ city.city }}</label><br>
+                {% endfor %}
               </div>
             </fieldset>
 
@@ -34,10 +32,13 @@
 
         }
         .create-cleaners {
-            width: 35%;
+            width: 45%;
         }
         .form {
             width: 45%;
+        }
+        .check-city {
+
         }
     </style>
 
