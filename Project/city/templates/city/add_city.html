@@ -3,6 +3,8 @@
 
 {% block content %}
     <div class="add-city">
+        <h5>Добавьте город и цену клининга в нём</h5>
+        <h5>(Только латынские буквы)</h5><br>
         <form method="POST">
             {% csrf_token %}
             {{ form.city }}<br>
@@ -18,7 +20,7 @@
             <tbody>
                 {% for city in citys %}
                     <tr>
-                        <td>{{ city.city }}: {{ city.price }} <img src="https://image.flaticon.com/icons/png/512/1400/1400339.png"></td>
+                        <td>{{ city.city }}: {{ city.price }} </td>
                     </tr>
                 {% endfor %}
             </tbody>

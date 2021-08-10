@@ -25,7 +25,7 @@ class CleanerDetail(DetailView):
 class CleanerCreation(CreateView):
     model = Cleaner
     success_url = reverse_lazy('cleaners:list')
-    fields = ['first_name', 'last_name', 'quality_score', "city","other_city"]
+    fields = ['first_name', 'last_name', 'quality_score', "city","other_city", "duration"]
     widgets = {
         'city': Textarea(attrs={
             'class': "form-control",
