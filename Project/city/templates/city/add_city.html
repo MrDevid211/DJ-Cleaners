@@ -8,17 +8,17 @@
             {{ form.city }}<br>
             {{ form.price }}<br>
 
-             <button class="btn btn-success" type="submit">Добавить</button>
-            <span>{{ error }}</span>
+             <button class="btn btn-success" type="submit">Добавить</button><br><br>
+            <h4>{{ error }}</h4>
         </form>
     </div>
     <div class="show-city">
-        <p>CITY:</p>
+        <h3>Город: Стоимость</h3>
         <table>
             <tbody>
                 {% for city in citys %}
                     <tr>
-                        <td>{{ city.city }}: </td>
+                        <td>{{ city.city }}: {{ city.price }} <img src="https://image.flaticon.com/icons/png/512/1400/1400339.png"></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -38,7 +38,6 @@
         }
         .show-city {
             width: 35%;
-            background-color: blue;
             float: right;
 
 
@@ -46,6 +45,11 @@
         }
         .form {
             width: 45%;
+        }
+        img {
+        height: 24px;
+        weight: 24px;
+        float: right;
         }
     </style>
 
