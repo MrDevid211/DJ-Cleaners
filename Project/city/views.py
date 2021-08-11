@@ -6,8 +6,6 @@ from .models import CityList
 
 def add_city(request):
     citys = CityList.objects.all() # Получаем байтики данны из таблички CityList
-    city = CityList.objects.all().values_list('city')
-    print()
     error = '' # Шоб коду плохо не было создадим эту переменную заранее,а то ругается
     if request.method == "POST": # Проверяем что мы там вообще получаем и если это было кинуто нам через POST (не церковный) - продолжаем
         form = CityListForm(request.POST)  # Запихаем эти данные в переменную

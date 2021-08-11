@@ -9,12 +9,17 @@
                 {{ form.as_p }}
             </div>
 
+        <select name="main_city">
+            {% for city in citys %}
+            <option value={{ city.city }}>{{ city.city }}</option>
+            {% endfor %}
+        </select>
 
             <fieldset>
               <legend>Выберите города, в которы может работать клинер</legend>
               <div class="check-city">
                 {% for city in citys %}
-                <input type="checkbox" id={{ city.city }} name={{ city.city }} value={{ city.city }}>
+                <input type="checkbox" id={{ city.city }} name="other_city" value={{ city.city }}>
                 <label>{{ city.city }}</label><br>
                 {% endfor %}
               </div>
@@ -38,7 +43,7 @@
             width: 45%;
         }
         .check-city {
-
+        padding: 15px;
         }
     </style>
 

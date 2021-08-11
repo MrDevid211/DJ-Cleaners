@@ -1,11 +1,11 @@
 from .models import Cleaner
-from django.forms import ModelForm, TextInput, Textarea
+from django.forms import ModelForm, TextInput, Textarea, CheckboxInput
 
 
 class CleanerForm(ModelForm):
     class Meta:
         model = Cleaner
-        fields = ['first_name', 'last_name', 'quality_score', "duration", "city","other_city"]
+        fields = ['first_name', 'last_name', 'quality_score', "duration"]
         widgets = {
             'first_name': TextInput(attrs={
                 'class': "form-control",
@@ -23,4 +23,5 @@ class CleanerForm(ModelForm):
                 'class': "form-control",
                 'placeholder': 'Введите время клининга'
             }),
+
         }
