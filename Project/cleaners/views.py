@@ -39,13 +39,14 @@ def CleanerCreation(request):
         if form.is_valid(): # Проверяем на валидность (не напартачили ли со вводом)
             form.save() # Кидаем всё это в нашу табличку в БД
 
-            city_for_details = ', '.join(citylist)
+            # ВНИМАНИЕ! AHTUNG! УВАГА!
+            # Ниже находятся костыли
+            city_for_details = ', '.join(citylist) # Делаем из списка строку с городами
 
-            Cleaner.objects.filter(city='1').update(city=main_city[0])
-            Cleaner.objects.filter(other_city='2').update(other_city=citylist)
-            Cleaner.objects.filter(other_city_for_details='3').update(other_city_for_details=city_for_details)
+            Cleaner.objects.filter(city='1').update(city=main_city[0]) # Ну тут мы точечно меняем запист в БД и пиаем туда наши данные
+            Cleaner.objects.filter(other_city='2').update(other_city=citylist) # Тут тоже
+            Cleaner.objects.filter(other_city_for_details='3').update(other_city_for_details=city_for_details) # И тут (да ну, серьёзно?)
 
-            #return redirect('/add_city')
             error = "Форма заполнена не верно"
 
     form = CleanerForm
