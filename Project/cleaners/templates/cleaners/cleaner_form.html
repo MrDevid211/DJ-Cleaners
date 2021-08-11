@@ -16,7 +16,7 @@
         </select>
 
             <fieldset>
-              <legend>Выберите города, в которы может работать клинер</legend>
+              <legend>Выберите города, в которых может работать клинер</legend>
               <div class="check-city">
                 {% for city in citys %}
                 <input type="checkbox" id={{ city.city }} name="other_city" value={{ city.city }}>
@@ -26,6 +26,7 @@
             </fieldset>
 
             <input class="btn btn-success" type="submit" value="Submit" />
+            <h4>{{ error }}</h4>
 
         </form>
     </div>

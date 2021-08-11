@@ -4,6 +4,7 @@
 {% block content %}
     <h1>{{ customer.first_name }}</h1>
     <p>Счёт: <i>{{ customer.quality_score }}</i></p>
+    <p>Номер телефона: <i>{{ customer.phone_number }}</i></p>
     <p>
         <a href="{% url "customers:list" %}">Назад</a>
     </p>

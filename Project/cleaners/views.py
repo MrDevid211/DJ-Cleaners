@@ -46,7 +46,8 @@ def CleanerCreation(request):
             Cleaner.objects.filter(city='1').update(city=main_city[0]) # Ну тут мы точечно меняем запист в БД и пиаем туда наши данные
             Cleaner.objects.filter(other_city='2').update(other_city=citylist) # Тут тоже
             Cleaner.objects.filter(other_city_for_details='3').update(other_city_for_details=city_for_details) # И тут (да ну, серьёзно?)
-
+            return redirect('/cleaners/new')
+        else:
             error = "Форма заполнена не верно"
 
     form = CleanerForm

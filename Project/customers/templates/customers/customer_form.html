@@ -2,9 +2,25 @@
 
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
-    </form>
+    <div class="create-customers">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form">
+                {{ form.as_p }}
+            </div>
+            <input class="btn btn-success" type="submit" value="Submit" />
+            <h4>{{ error }}</h4>
+        </form>
+    </div>
+
+    <style type="text/css">
+
+        .create-customers {
+            width: 45%;
+        }
+        .form {
+            width: 45%;
+        }
+
+    </style>
 {% endblock content %}
