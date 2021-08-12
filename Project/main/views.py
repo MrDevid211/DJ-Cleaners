@@ -1,9 +1,10 @@
+import datetime as DT
 
 from django.shortcuts import render, redirect
 
 from customers.models import Customer
 from .forms import BookingForm
-
+from .models import Booking
 
 
 def home(request):
@@ -15,9 +16,17 @@ def home(request):
 
         date_time = request.POST.getlist('date_time')[0] #
         user_phone = request.POST.getlist('select_customer')[0]
-        time = date_time[11:]
+        time = date_time[11:] + ':00'
         date = date_time[:-6]
-        print(time, date, user_phone)
+
+        dt = DT.datetime.strptime(f'{date} {time}', '%Y-%m-%d %H:%M:%S')
+        unix_time_start = dt.timestamp()
+
+
+        cleaner_choice(unix_time_start)
+
+
+
 
         form = BookingForm(request.POST)  # Запихаем эти данные в переменную
 
@@ -37,3 +46,7 @@ def home(request):
     }
 
     return render(request, 'main/home.html', context)
+
+
+def cleaner_choice(unix_time_start):
+    print(unix_time_start)
