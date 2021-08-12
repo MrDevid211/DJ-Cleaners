@@ -5,19 +5,22 @@
     <div class="bookings">
         <h2>Заполните все поля для заказа клинера</h2><br>
         <form method="post">
-            <h4>Выберите свои данные из списка уже зареестрированых пользователей, дату и время для заказа клинера</h4><br>
-            <select name="select_customer">
-                {% for customer in customers %}
-                <option value={{ customer.id }}>{{ customer.first_name }} {{ customer.last_name }}</option>
-                {% endfor %}
-            </select>
+            <div class="">
+                {% csrf_token %}
+                <h4>Выберите свои данные из списка уже зареестрированых пользователей, дату и время для заказа клинера</h4><br>
+                <select name="select_customer">
+                    {% for customer in customers %}
+                    <option value={{ customer.phone_number}}>{{ customer.first_name }} {{ customer.last_name }}</option>
+                    {% endfor %}
+                </select>
 
-            <br><br>
+                <br><br>
 
-            <input type="datetime-local" placeholder="Время" class="form-control inp"><br>
+                <input name="date_time" type="datetime-local" placeholder="Время" class="form-control inp"><br>
 
 
-            <button class="btn btn-success" type="submit">Заказать клинера</button>
+                <button class="btn btn-success" type="submit">Заказать клинера</button>
+            </div>
         </form>
 
 

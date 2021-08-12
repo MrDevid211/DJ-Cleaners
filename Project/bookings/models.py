@@ -6,4 +6,5 @@ from cleaners.models import Cleaner
 class Booking(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE,) # Добавил для исправления ошибки при запуске
     cleaner = models.ForeignKey(Cleaner, on_delete=models.CASCADE) # Добавил для исправления ошибки при запуске
-    date = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField()
