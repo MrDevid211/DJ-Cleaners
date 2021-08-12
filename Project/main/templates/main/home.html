@@ -5,14 +5,15 @@
     <div class="bookings">
         <h2>Заполните все поля для заказа клинера</h2><br>
         <form method="post">
+            <h4>Выберите свои данные из списка уже зареестрированых пользователей, дату и время для заказа клинера</h4><br>
             <select name="select_customer">
-            {% for first_name in customers %}
-            <option value={{ customers.first_name }}>{{ customers.first_name }}</option>
-            {% endfor %}
+                {% for customer in customers %}
+                <option value={{ customer.id }}>{{ customer.first_name }} {{ customer.last_name }}</option>
+                {% endfor %}
             </select>
 
             <br><br>
-            <input type="text" placeholder="Введите свой номер телефона" class="form-control inp" pattern="2[0-9]{3}-[0-9]{3}"><br>
+
             <input type="datetime-local" placeholder="Время" class="form-control inp"><br>
 
 
