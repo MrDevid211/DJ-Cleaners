@@ -5,15 +5,12 @@
     <div class="bookings">
         <h2>Заполните все поля для заказа клинера</h2><br>
         <form method="post">
-            <input type="text" placeholder="Введите ваше имя" class="form-control inp"><br>
-            <input type="text" placeholder="Введите вашу фамилию" class="form-control inp"><br>
-            <p>Выберите город:</p>
-            <select class="city-select">
-                <option label="Киев" value="1" selected>Киев</option>
-                <option>Кременчуг</option>
-                <option>Ялта</option>
-                <option>Полтава</option>
+            <select name="select_customer">
+            {% for first_name in customers %}
+            <option value={{ customers.first_name }}>{{ customers.first_name }}</option>
+            {% endfor %}
             </select>
+
             <br><br>
             <input type="text" placeholder="Введите свой номер телефона" class="form-control inp" pattern="2[0-9]{3}-[0-9]{3}"><br>
             <input type="datetime-local" placeholder="Время" class="form-control inp"><br>
