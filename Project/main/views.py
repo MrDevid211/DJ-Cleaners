@@ -2,7 +2,9 @@ import datetime as DT
 
 from django.shortcuts import render, redirect
 
+from cleaners.models import Cleaner
 from customers.models import Customer
+
 from .forms import BookingForm
 from .models import Booking
 
@@ -50,3 +52,38 @@ def home(request):
 
 def cleaner_choice(unix_time_start):
     print(unix_time_start)
+
+    booking = Booking.objects.all()
+#
+#     for note in booking:
+#         start_t = note.unix_time_start
+#         finish_t = note.unix_time_end
+#         check = outside(unix_time_start, start_t, finish_t)
+#         print(type(check))
+#         if check:
+#             print(1111)
+#
+# def outside(unix_time_start, start_t, finish_t):
+#     print(222)
+#     if start_t > unix_time_start and start_t < finish_t:
+#         return False
+#     else:
+#         return True
+#
+
+
+
+
+    cleaners = Cleaner.objects.all()
+    quality_score_cleaners = {}
+    id_n_durations = {}
+    for i in cleaners:
+        id_n_durations[i.id] = i.duration
+        quality_score_cleaners[float(i.quality_score)] = i.id
+
+    top_cleaners_quality = max(quality_score_cleaners)
+    top_cleaners_id = quality_score_cleaners[top_cleaners_quality]
+    top_cleaners_durations = id_n_durations[top_cleaners_id]
+    print(top_cleaners_quality)
+    print(top_cleaners_id)
+    print(top_cleaners_durations*60)
