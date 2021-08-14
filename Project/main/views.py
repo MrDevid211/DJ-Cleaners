@@ -82,21 +82,25 @@ def check_DB(booking, unix_time_start):
         finish_t = note.unix_time_end
         ids = note.top_cleaners_id
         busy_cleaners_id = outside(unix_time_start, start_t, finish_t, ids, busy_cleaners_id) # Запускаем функцию, которая проверит кто из клинеров занят на нужное время
-        print(busy_cleaners_id)
+
         if len(search_top_cleaner(busy_cleaners_id)) == 3:
             top_cleaners_quality, top_cleaners_id, top_cleaners_durations  = search_top_cleaner(busy_cleaners_id) # Кидаем в нашу функцию поиска топ клинера список клинеров,что заняты
-
-    return top_cleaners_quality, top_cleaners_id, top_cleaners_durations
+            return top_cleaners_quality, top_cleaners_id, top_cleaners_durations
+        else:
+            error = search_top_cleaner(busy_cleaners_id)
+            return error
 
 def outside(unix_time_start, start_t, finish_t, ids, busy_cleaners_id): # Принимаем время, на которое нужен клинер, время начала клининга в очереднй записи и время конца клининга этой же записи
 
     if start_t > unix_time_start and unix_time_start < finish_t:
         busy_cleaners_id.append(ids)
+
     return  busy_cleaners_id
 
 
 
 def search_top_cleaner(busy_cleaners_id):
+    print(busy_cleaners_id)
     cleaners = Cleaner.objects.all()
     quality_score_cleaners = {}
     id_and_durations = {}
@@ -106,7 +110,7 @@ def search_top_cleaner(busy_cleaners_id):
         else:
             id_and_durations[i.id] = i.duration
             quality_score_cleaners[float(i.quality_score)] = i.id
-        print(id_and_durations)
+        #print(id_and_durations)
     if len(quality_score_cleaners) != 0:
         top_cleaners_quality = max(quality_score_cleaners)
         top_cleaners_id = quality_score_cleaners[top_cleaners_quality]
