@@ -15,7 +15,11 @@
                 </select>
 
                 <br><br>
-
+                <select name="booking_city">
+                    {% for city in citys %}
+                    <option value={{ city.city }}>{{ city.city }}</option>
+                    {% endfor %}
+                </select><br><br>
                 <input name="date_time" type="datetime-local" placeholder="Время" class="form-control inp"><br>
 
 

@@ -4,13 +4,14 @@ from django.shortcuts import render, redirect
 
 from cleaners.models import Cleaner
 from customers.models import Customer
+from city.forms import CityList
 
 from .forms import BookingForm
 from .models import Booking
 
 
 def home(request):
-
+    citys = CityList.objects.all()
     customers = Customer.objects.all()
 
     error = ''  # Шоб коду плохо не было создадим эту переменную заранее,а то ругается
@@ -45,6 +46,7 @@ def home(request):
         'form': form,
         'error': error,
         'customers': customers,
+        'citys': citys,
     }
 
     return render(request, 'main/home.html', context)
