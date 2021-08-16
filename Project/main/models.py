@@ -7,6 +7,7 @@ class Booking(models.Model):
     top_cleaners_id = models.IntegerField(default=0)
     city = models.CharField(max_length=100, default='')
     top_cleaners_durations = models.IntegerField(default=1)
+    price = models.CharField(max_length=100)
 
     unix_time_start = models.IntegerField(default=2)
     unix_time_end = models.IntegerField(default=3)

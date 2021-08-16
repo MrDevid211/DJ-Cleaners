@@ -14,6 +14,7 @@ def home(request):
     citys = CityList.objects.all()
     customers = Customer.objects.all()
 
+
     error = ''  # Шоб коду плохо не было создадим эту переменную заранее,а то ругается
     if request.method == "POST":  # Проверяем что мы там вообще получаем и если это было кинуто нам через POST (не церковный) - продолжаем
 
@@ -84,6 +85,7 @@ def home(request):
 def cleaner_choice(unix_time_start, customer_phone_number, booking_city):
     notation = False # Если будет 1 (True) - мы делаем запись в таблице БД
     booking = Booking.objects.all()
+    customers = Customer.objects.all()
 
     if len(booking) == 0: # Если наша таблица с бронированием пустая - не выдумываем и сразу кидаем туда данные
         busy_cleaners_id = [] # Создадим что бы не ругалось
@@ -101,14 +103,31 @@ def cleaner_choice(unix_time_start, customer_phone_number, booking_city):
     if notation:
         print('Лучший найденый клинер: ', top_cleaners_id )
 
+        #Customer.objects.filter(phone_number=customer_phone_number).update(quality_score=F("quality_score") +1)
 
+        for customer in customers:
+            if customer.phone_number == customer_phone_number:
+                quality_score=customer.quality_score
+
+        new_quality_score = int(quality_score)+1
+        Customer.objects.filter(phone_number=customer_phone_number).update(quality_score=new_quality_score)
+
+        citys = CityList.objects.all()
+        price = []
+        for city in citys:
+            if city.city == booking_city:
+                price.append(city.price)
+        price = int(price[0])
+        price = (price*(100-new_quality_score))/100
+        print(price)
         # Аккуратно бросаем эти данные в табицу
         booking = Booking(customer_phone_number=customer_phone_number,
                           top_cleaners_id=top_cleaners_id,
                           top_cleaners_durations=top_cleaners_durations,
                           unix_time_start=unix_time_start,
                           unix_time_end=unix_time_end,
-                          city=booking_city)
+                          city=booking_city,
+                          price=price)
         booking.save()
 
 
