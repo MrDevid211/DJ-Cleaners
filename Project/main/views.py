@@ -161,7 +161,7 @@ def search_top_cleaner(busy_cleaners_id, booking_city):
     cleaners = Cleaner.objects.all()  # Получаем список клинеров
     quality_score_cleaners = {}  # Здесь у нас будет словарь {рейтинг клинера: его АйДи}
     id_and_durations = {}  # Такой же словарь только с {АйДи: Время клининга}
-    cleaner_can_go_to = []  # Города, в которые может поеать клинер
+    cleaner_can_go_to = []  # Города, в которые может поехать клинер
 
     for cleaner in cleaners:  # Перебираем всех клинеров
         city_list = cleaner.other_city.all()
