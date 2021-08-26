@@ -7,7 +7,7 @@
         <form method="post">
             <div class="">
                 {% csrf_token %}
-                <h4>Выберите свои данные из списка уже зареестрированых пользователей, дату и время для заказа клинера</h4><br>
+                <h4>Выберите свои данные из списка уже зареестрированых пользователей, город, дату и время для заказа клинера</h4><br>
                 <select name="select_customer">
                     {% for customer in customers %}
                     <option value={{ customer.phone_number}}>{{ customer.first_name }} {{ customer.last_name }}</option>

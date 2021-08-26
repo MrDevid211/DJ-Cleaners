@@ -17,12 +17,10 @@ class CustomerDetail(DetailView):
     model = Customer
 
 
-
-
-def CustomerCreation(request):
+def customer_creation(request):
     customer = Customer.objects.all()
     error = '' # Шоб коду плохо не было создадим эту переменную заранее,а то ругается
-    if request.method == "POST": # Проверяем что мы там вообще получаем и если это было кинуто нам через POST (не церковный) - продолжаем
+    if request.method == "POST": # Проверяем что мы там вообще получаем и если это было кинуто через POST - продолжаем
 
         form = CustomerForm(request.POST)  # Запихаем эти данные в переменную
 
@@ -33,7 +31,7 @@ def CustomerCreation(request):
             error = "Форма заполнена не верно"
 
     form = CustomerForm
-    # Ну тут мы просто пихаем наши байтики данных на страницу, где их уже можно будет красивенько (или не очень) разместить
+    # Ну тут мы просто пихаем наши байтики данных на страницу
     context = {
         'form': form,
         'error': error,
@@ -41,10 +39,6 @@ def CustomerCreation(request):
     }
 
     return render(request, 'customers/customer_form.html', context)
-
-
-
-
 
 
 class CustomerUpdate(UpdateView):

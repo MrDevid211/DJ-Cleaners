@@ -8,22 +8,23 @@
             <div class="form">
                 {{ form.as_p }}
             </div>
-
+        <h4>Выбирите город, в котором вы находитесь:</h4>
         <select name="main_city">
+
             {% for city in citys %}
             <option value={{ city.city }}>{{ city.city }}</option>
             {% endfor %}
         </select>
 
-            <fieldset>
-              <legend>Выберите города, в которых может работать клинер</legend>
-              <div class="check-city">
-                {% for city in citys %}
-                <input type="checkbox" id={{ city.city }} name="other_city" value={{ city.city }}>
-                <label>{{ city.city }}</label><br>
-                {% endfor %}
-              </div>
-            </fieldset>
+        <fieldset>
+          <legend>Выберите города, в которых может работать клинер (выбраный город, в котором вы наодитесь так же стоит здесь указать если вы в нём будете работать)</legend>
+          <div class="check-city">
+            {% for city in citys %}
+            <input type="checkbox" id={{ city.city }} name="other_city" value={{ city.city }}>
+            <label>{{ city.city }}</label><br>
+            {% endfor %}
+          </div>
+        </fieldset>
 
             <input class="btn btn-success" type="submit" value="Submit" />
             <h4>{{ error }}</h4>

@@ -12,7 +12,6 @@ from django.views.generic.edit import (
     UpdateView,
     DeleteView
 )
-
 from .models import Cleaner
 
 
@@ -25,35 +24,34 @@ class CleanerDetail(DetailView):
 
 
 def CleanerCreation(request):
-    citys = CityList.objects.all()
+    citys = CityList.objects.all() # Получаем список городов
     cleaner = Cleaner.objects.all() # Получаем байтики данны из таблички CityList
     error = '' # Шоб коду плохо не было создадим эту переменную заранее,а то ругается
-    if request.method == "POST": # Проверяем что мы там вообще получаем и если это было кинуто нам через POST (не церковный) - продолжаем
+    if request.method == "POST": # Проверяем что мы там вообще получаем и если это было кинуто через POST - продолжаем
 
         citylist = request.POST.getlist('other_city')
         main_city = request.POST.getlist('main_city')
-
 
         form = CleanerForm(request.POST, request.POST.getlist('other_city'))  # Запихаем эти данные в переменную
 
         if form.is_valid(): # Проверяем на валидность (не напартачили ли со вводом)
             form.save() # Кидаем всё это в нашу табличку в БД
 
-            # ВНИМАНИЕ! AHTUNG! УВАГА!
-            # Ниже находятся костыли
-            city_for_details = ', '.join(citylist) # Делаем из списка строку с городами
+            # Ну тут мы точечно меняем запист в БД и пихаем туда наши данные
+            Cleaner.objects.filter(city='1').update(city=main_city[0])
 
-            Cleaner.objects.filter(city='1').update(city=main_city[0]) # Ну тут мы точечно меняем запист в БД и пихаем туда наши данные
-            Cleaner.objects.filter(other_city='2').update(other_city=citylist) # Тут тоже
-            Cleaner.objects.filter(other_city_for_details='3').update(other_city_for_details=city_for_details) # И тут (да ну, серьёзно?)
+            cleaner = Cleaner.objects.last()
+            for city in citylist:
+                city = CityList.objects.filter(city=city)
+                print(type(city[0]))
+                cleaner.other_city.add(city[0])
 
             return redirect('/cleaners/new')
         else:
             error = "Форма заполнена не верно"
 
-
     form = CleanerForm
-    # Ну тут мы просто пихаем наши байтики данных на страницу, где их уже можно будет красивенько (или не очень) разместить
+    # Ну тут мы просто пихаем наши байтики данных на страницу
     context = {
         'form': form,
         'error': error,
@@ -62,7 +60,6 @@ def CleanerCreation(request):
     }
 
     return render(request, 'cleaners/cleaner_form.html', context)
-
 
 
 class CleanerUpdate(UpdateView):

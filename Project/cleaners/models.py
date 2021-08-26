@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Cleaner(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=100)
@@ -9,7 +10,5 @@ class Cleaner(models.Model):
     phone_number = models.CharField(max_length=50, default="")
 
     city = models.CharField(max_length=100, default="1")
-    other_city = models.CharField(max_length=9999, default="2")
-    # Костыль для более красивого вывода обслуживаемых городов
-    other_city_for_details = models.CharField(max_length=9999, default="3")
+    other_city = models.ManyToManyField('city.CityList', blank=True)
 

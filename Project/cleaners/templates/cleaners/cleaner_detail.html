@@ -5,7 +5,11 @@
     <h1>{{ cleaner.first_name }} {{ cleaner.last_name }}</h1>
     <p>Счёт: <i>{{ cleaner.quality_score }}</i></p>
     <p>Основной город: <i>{{ cleaner.city }}</i></p>
-    <p>Может выехать в: <i>{{ cleaner.other_city_for_details }}</i></p>
+    <p>Может выехать в:
+        {% for city in cleaner.other_city.all %}
+            <i>{{ city.city }}, </i>
+        {% endfor %}
+    </p>
     <p>Длительность чистки (в минутах): <i>{{ cleaner.duration }}</i></p>
     <p>Номер телефона: <i>{{ cleaner.phone_number }}</i></p>
     <p>
